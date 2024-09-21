@@ -1,6 +1,7 @@
 package be.naaturel.homestorage.controlers;
 
 import be.naaturel.homestorage.configurations.Configurations;
+import be.naaturel.homestorage.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,29 +18,23 @@ import java.util.Map;
 public class UploadController {
 
     private final Configurations conf;
+    private final FileService fileService;
 
     @Autowired
     public UploadController(Configurations conf) {
         this.conf = conf;
+        this.fileService = new FileService();
     }
 
     @PostMapping("/api/upload")
-    public ResponseEntity<Map<String, String>> handleFileUploadUsingCurl(
-            @RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<String> handleFileUploadUsingCurl(@RequestParam("file") MultipartFile file) {
 
-        Map<String, String> map = new HashMap<>();
+        try {
+            this.fileService.upload(conf.storageLocation, file);
+        } catch (IOException ioe) {
+            return ResponseEntity.badRequest().body("Unable to save file for reason : " + ioe.getMessage());
+        }
 
-        // Populate the map with file details
-        map.put("fileName", file.getOriginalFilename());
-        map.put("fileSize", String.valueOf(file.getSize()));
-        map.put("fileContentType", file.getContentType());
-
-        // File upload is successful
-        map.put("message", "File upload done");
-
-        String path = String.format("%s%s", conf.storageLocation, file.getOriginalFilename());
-        file.transferTo(new File(path));
-
-        return ResponseEntity.ok(map);
+        return ResponseEntity.ok("File successfully uploaded");
     }
 }
