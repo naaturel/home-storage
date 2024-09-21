@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Configurations {
 
-    @Value("${save.path}")
-    public String savePath = "";
+    @Value("${storage.location}")
+    public String storageLocation = "";
 
 }

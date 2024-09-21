@@ -2,7 +2,6 @@ package be.naaturel.homestorage.controlers;
 
 import be.naaturel.homestorage.configurations.Configurations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +37,7 @@ public class UploadController {
         // File upload is successful
         map.put("message", "File upload done");
 
-        String path = String.format("%s%s", conf.savePath, file.getOriginalFilename());
+        String path = String.format("%s%s", conf.storageLocation, file.getOriginalFilename());
         file.transferTo(new File(path));
 
         return ResponseEntity.ok(map);

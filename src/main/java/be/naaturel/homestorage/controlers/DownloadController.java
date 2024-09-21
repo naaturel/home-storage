@@ -2,7 +2,6 @@ package be.naaturel.homestorage.controlers;
 
 import be.naaturel.homestorage.configurations.Configurations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +25,7 @@ public class DownloadController {
     @GetMapping("/api/files")
     public ResponseEntity<Set<String> > listFiles(){
 
-        Set<String> files = Stream.of(new File(conf.savePath).listFiles())
+        Set<String> files = Stream.of(new File(conf.storageLocation).listFiles())
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)
                 .collect(Collectors.toSet());
