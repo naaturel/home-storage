@@ -1,15 +1,12 @@
 package be.naaturel.homestorage.services;
 
-import be.naaturel.homestorage.Mapping.DocumentMapper;
+import be.naaturel.homestorage.mapping.DocumentMapper;
 import be.naaturel.homestorage.models.Document;
 import be.naaturel.homestorage.repository.DocumentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.File;
 import java.io.IOException;
