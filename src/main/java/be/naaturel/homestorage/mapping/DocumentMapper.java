@@ -1,4 +1,4 @@
-package be.naaturel.homestorage.Mapping;
+package be.naaturel.homestorage.mapping;
 
 import be.naaturel.homestorage.infrastucture.DocumentEntity;
 import be.naaturel.homestorage.models.Document;

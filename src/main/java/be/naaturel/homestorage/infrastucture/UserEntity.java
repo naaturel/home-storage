@@ -7,15 +7,15 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    public Long Id;
 
     @Column
-    private String name;
+    public String name;
 
     @Column
-    private String password;
+    public String password;
 
     @Column
-    private String salt;
+    public String salt;
 
 }
