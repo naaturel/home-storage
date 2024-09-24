@@ -5,7 +5,6 @@ import be.naaturel.homestorage.models.User;
 
 public class UserMapper {
 
-
     public static UserEntity toEntity(User u) {
 
 

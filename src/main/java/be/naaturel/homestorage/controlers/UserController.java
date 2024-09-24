@@ -1,6 +1,5 @@
 package be.naaturel.homestorage.controlers;
 
-import be.naaturel.homestorage.infrastucture.UserEntity;
 import be.naaturel.homestorage.models.User;
 import be.naaturel.homestorage.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,18 @@ public class UserController {
     }
 
     @PostMapping("/api/user/register")
-    public ResponseEntity<UserEntity> register(@RequestBody User u){
+    public ResponseEntity<User> register(@RequestBody User u){
         userService.register(u);
+        return ResponseEntity.ok(u);
+    }
+
+    @PostMapping("/api/user/authenticate")
+    public ResponseEntity<User> authenticate(@RequestBody User u){
+        if(userService.authenticate(u)){
+            return ResponseEntity.ok(u);
+        }
+
         return ResponseEntity.ok(null);
     }
+
 }

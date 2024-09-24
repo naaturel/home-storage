@@ -15,7 +15,5 @@ public class UserEntity {
     @Column
     public String password;
 
-    @Column
-    public String salt;
 
 }
