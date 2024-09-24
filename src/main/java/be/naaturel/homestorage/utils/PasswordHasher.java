@@ -1,12 +1,16 @@
 package be.naaturel.homestorage.utils;
 
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class PasswordHasher extends Cryptography{
 
+
     public String hash(String password){
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder.encode(password);
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public boolean check(String predicate, String hash){
+        return BCrypt.checkpw(predicate, hash);
     }
 }

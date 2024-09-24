@@ -12,15 +12,27 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepo userRepo;
+    private final PasswordHasher pwdHasher;
 
     @Autowired
     public UserService(UserRepo userRepo){
+
         this.userRepo = userRepo;
+        this.pwdHasher = new PasswordHasher();
     }
 
     public void register(User u){
-        u.hashPassword();
         UserEntity ue = UserMapper.toEntity(u);
+        ue.password = pwdHasher.hash(ue.password);
         userRepo.save(ue);
     }
+
+    public boolean authenticate(User u){
+
+        UserEntity entity = userRepo.findByName(u.getName());
+        if(entity == null) return false;
+
+        return pwdHasher.check(u.getPassword(), entity.password);
+    }
+
 }
