@@ -1,6 +1,8 @@
 package be.naaturel.homestorage.controlers;
 
 import be.naaturel.homestorage.configurations.Configurations;
+import be.naaturel.homestorage.exceptions.CriticalException;
+import be.naaturel.homestorage.exceptions.FileSaveException;
 import be.naaturel.homestorage.repository.DocumentRepo;
 import be.naaturel.homestorage.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,8 @@ public class UploadController {
 
         try {
             this.fileService.upload(conf.storageLocation, file);
-        } catch (IOException ioe) {
-            return ResponseEntity.badRequest().body("Unable to save file for reason : " + ioe.getMessage());
+        } catch (FileSaveException | CriticalException fse) {
+            return ResponseEntity.badRequest().body("Unable to save file for reason : " + fse.getMessage());
         }
 
         return ResponseEntity.ok("File successfully uploaded");
