@@ -7,9 +7,8 @@ public class DocumentMapper {
 
     public static DocumentEntity toEntity(Document doc){
         DocumentEntity dao = new DocumentEntity();
-        dao.token =  doc.getToken();
         dao.name = doc.getName();
-        dao.content = doc.getContent();
+        dao.location = doc.getLocation().toString();
         return dao;
     }
 

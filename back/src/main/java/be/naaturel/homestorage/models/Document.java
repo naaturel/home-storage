@@ -5,42 +5,27 @@ import be.naaturel.homestorage.utils.Encrypter;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
+import java.io.File;
+import java.nio.file.Path;
 import java.security.InvalidKeyException;
 
-public class Document {
+public class Document extends File {
 
-    private Long token;
+    private Path location;
 
     private String name;
 
-    private byte[] content;
-
-    private Encrypter encrypter;
-
-    public Document(){
-        encrypter = new Encrypter();
-    }
-
-    public Long getToken(){
-        return this.token;
+    public Document(Path location, String name){
+        super(location.toString());
+        this.location = location;
+        this.name = name;
     }
 
     public String getName(){
         return this.name;
     }
-    public byte[] getContent(){
-        return this.content;
-    }
 
-    public void setName(String name){
-        this.name = name;
-    }
+    public Path getLocation(){return this.location;}
 
-    public void setContent(byte[] content){
-        try {
-            this.content = encrypter.encrypt(content);
-        } catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 }
