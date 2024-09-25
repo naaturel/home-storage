@@ -13,10 +13,13 @@
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"topnavbar": "^4.2.7",
 		"svelte": "^4.2.7",
 		"svelte-check": "^4.0.0",
+		"svelte-use-form": "^2.10.0",
 		"typescript": "^5.0.0",
 		"vite": "^5.0.3"
 	},
+
 	"type": "module"
 }
