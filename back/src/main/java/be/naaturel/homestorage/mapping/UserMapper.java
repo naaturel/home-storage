@@ -7,10 +7,9 @@ public class UserMapper {
 
     public static UserEntity toEntity(User u) {
 
-
         UserEntity ue = new UserEntity();
-        ue.name = u.getName();
-        ue.password = u.getPassword();
+        ue.setName(u.getName());
+        ue.setPassword(u.getPassword());
 
         return ue;
     }
