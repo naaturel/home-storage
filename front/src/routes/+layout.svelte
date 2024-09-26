@@ -1,34 +1,42 @@
 <script>
-    import Button from "../components/Button.svelte";
+    import Button from "$lib/components/Button.svelte";
+    import github_mark from '$lib/assets/github-mark-white.svg';
+    import twitter_mark from '$lib/assets/twitter-mark-white.svg';
+
 </script>
 
 <nav class="bordered">
 
-    <Button link="/"> Home </Button>
-    <Button link="/login"> Login </Button>
-    <Button link="/logout"> Logout </Button>
-    <Button link="/download"> Download </Button>
-    <Button link="/upload"> Upload </Button>
+    <Button --background-color="none" link="/"> Home </Button>
+    <Button --background-color="none" link="/login"> Login </Button>
+    <Button --background-color="none" link="/logout"> Logout </Button>
+    <Button --background-color="none" link="/download"> Download </Button>
+    <Button --background-color="none" link="/upload"> Upload </Button>
 
 </nav>
 
-<hr/>
+<hr class="nav_delimiter"/>
 
 <div class="container">
     <slot/>
 </div>
 
 
-<hr/>
+<hr class="footer_delimiter"/>
 
 <footer>
-    <a href="https://github.com/naaturel">Github</a>
-    <a href="https://twitter.com/naaturel_">Twitter</a>
-</footer>
+    <img
+            src={github_mark}
+            height="40"
+            width="40"
+            alt="Github mark"/>
 
-<!--
-Primary : #F5F5F5
-Secondary : #B9E937
-Tertiary : #00B906
-Secondary : #424242
--->
+    <img
+            src="{twitter_mark}"
+            height="40"
+            width="40"
+            alt="Twitter mark"/>
+
+    <!--<a href="https://github.com/naaturel">Github</a>
+    <a href="https://twitter.com/naaturel_">Twitter</a>-->
+</footer>

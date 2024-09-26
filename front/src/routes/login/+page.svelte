@@ -1,12 +1,6 @@
 <script>
 
-import Button from "../../components/Button.svelte";
-
-const buttonStyle = {
-    "box-shadow" : "none",
-    "text-decoration" : "underline",
-    "margin-top" : "1vh",
-}
+import Button from "$lib/components/Button.svelte";
 
 </script>
 
@@ -17,39 +11,22 @@ const buttonStyle = {
         <input class="bordered" placeholder="Username">
         <input class="bordered" placeholder="Password">
 
-        <Button {buttonStyle}> Log me in ! </Button>
-        <a href="">Not registered yet ? Let's get started</a>
-    </form>
+        <Button --box-shadow="none"
+                --text-decoration="underline"
+                --margin-top="5vh"
+                --border="solid 1px black"
+                --width="18vw">
+            Log me in !
+        </Button>
 
+        <a href="/register">Not registered yet ? Let's get started</a>
+    </form>
 
 <style>
 
-
-    form
-    {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        margin: 10vh;
-    }
-
-    input
-    {
-        color: #424242;
-        font-size: 2.5vh;
-
-        width: 20vw;
-        height: 4.5vh;
-
-        padding: 1vh;
-        margin: 2.5vh;
-
-        text-align: center;
-    }
-
     a
     {
+
         margin-bottom: 3vh;
         margin-top: 3vh;
         font-size: 1.25vh;

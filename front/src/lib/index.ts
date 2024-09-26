@@ -1,1 +1,1 @@
-// place files you want to import through the `$lib` alias in this folder.
+let github_mark = './assets/github-mark.svh'
