@@ -1,0 +1,81 @@
+*
+{
+    font-family: "Roboto Light", sans-serif;
+    color: #F5F5F5;
+    text-decoration: none;
+    font-size: 1vw;
+    transition: 0.3s;
+}
+
+h1
+{
+    font-size: xxx-large;
+}
+
+body
+{
+    display: flex;
+    height: 98vh;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(45deg, #102eff, #d2379b);
+}
+
+.container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 75vw;
+    height: 75vh;
+}
+
+hr {
+    height: 1px;
+    width: 100%;
+    background-color: black;
+    border: none;
+    margin-bottom: 5vh;
+
+}
+
+nav
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    height: 5vh;
+
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+
+}
+
+nav a
+{
+    margin-right: 2.5vw;
+    margin-left: 2.5vw;
+}
+
+.primaryColor
+{
+
+}
+
+.secondaryColor
+{
+
+}
+
+.tertiaryColor
+{
+
+}
+
+.bordered
+{
+    border-radius: 10px;
+}
