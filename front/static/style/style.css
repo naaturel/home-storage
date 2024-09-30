@@ -1,15 +1,20 @@
+:root
+{
+    --font-size : 1vw;
+}
+
 *
 {
     font-family: "Roboto Light", sans-serif;
     color: #F5F5F5;
     text-decoration: none;
-    font-size: 1vw;
+    font-size: var(--font-size, 1vw);
     transition: 0.3s;
 }
 
 h1
 {
-
+    font-size: calc(var(--font-size, 1vw) * 2.5);
 }
 
 html

@@ -1,21 +1,25 @@
 <script>
 
+    export let link = ""
+
     export let action = {
         default: async (event) => {
             console.log(event)
         }
     }
 
+
 </script>
 
-    <button class="bordered">
-        <slot/>
-    </button>
+<a class="bordered" href={link}>
+    <slot/>
+</a>
 
 <style>
 
-    button
+    a
     {
+
 
         color: #F5F5F5;
 
@@ -30,7 +34,7 @@
         border: var(--border, none);
 
         width: var(--width, fit-content);
-        height: var(--height, 6vh);
+        height: var(--height, 3vh);
 
         box-shadow: var(--box-shadow, 0 0 5px black);
         text-decoration: var(--text-decoration, none);
@@ -38,7 +42,7 @@
 
     }
 
-    button:hover
+    a:hover
     {
         transform: scale(1.1);
         color: #424242;

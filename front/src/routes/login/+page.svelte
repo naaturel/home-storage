@@ -1,18 +1,30 @@
 <script>
 
 import Button from "$lib/components/Button.svelte";
+import {userStore} from "$lib/stores/UserStore.js";
+import {User} from "$lib/models/User.js";
+
+let name = "";
+let password = "";
+
+function signIn(event) {
+    event.preventDefault();
+    console.log($userStore)
+    userStore.authenticate(new User({name:name, password:password}));
+    console.log($userStore)
+}
 
 </script>
 
     <h1>Log in to start</h1>
 
-    <form>
+    <form method="POST" on:submit={signIn}>
 
-        <input class="bordered" placeholder="Username">
-        <input class="bordered" placeholder="Password">
+        <input class="bordered" placeholder="Username" bind:value={name}>
+        <input class="bordered" placeholder="Password" bind:value={password}>
 
-        <Button --box-shadow="none"
-                --text-decoration="underline"
+        <Button
+                --box-shadow="none"
                 --margin-top="5vh"
                 --border="solid 1px black"
                 --width="18vw">

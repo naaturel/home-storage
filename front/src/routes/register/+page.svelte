@@ -21,12 +21,13 @@
     <input class="bordered" name="password" type="password" placeholder="Confirm password">
 
     <Button --box-shadow="none"
-            --text-decoration="underline"
-            --margin-top="1vh">
-        Log me in !
+            --margin-top="5vh"
+            --border="solid 1px black"
+            --width="18vw">
+        Sign me in !
     </Button>
 
-    <a href="/register">Already got an account ?</a>
+    <a href="/login">Already got an account ?</a>
 
 </form>
 
