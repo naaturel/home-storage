@@ -1,17 +1,14 @@
 <script>
 
 import Button from "$lib/components/Button.svelte";
-import {userStore} from "$lib/stores/UserStore.js";
-import {User} from "$lib/models/User.js";
+import {authenticate} from "$lib/stores/requests.js";
 
 let name = "";
 let password = "";
 
-function signIn(event) {
+async function signIn(event) {
     event.preventDefault();
-    console.log($userStore)
-    userStore.authenticate(new User({name:name, password:password}));
-    console.log($userStore)
+    await authenticate(name, password);
 }
 
 </script>
