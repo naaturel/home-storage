@@ -4,6 +4,7 @@ import be.naaturel.homestorage.models.User;
 import be.naaturel.homestorage.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class UserController {
 
     @PostMapping("/api/user/authenticate")
     public ResponseEntity<User> authenticate(@RequestBody User u){
+        System.out.println("Blurp");
         if(userService.authenticate(u)){
             return ResponseEntity.ok(u);
         }
