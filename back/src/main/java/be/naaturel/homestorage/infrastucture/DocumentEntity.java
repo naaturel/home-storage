@@ -2,21 +2,19 @@ package be.naaturel.homestorage.infrastucture;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
+import java.util.UUID;
 
 @Entity(name = "documents")
 public class DocumentEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long token;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    public String token;
 
     @Column
     public String name;
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(columnDefinition = "BLOB", nullable = false)
-    public byte[] content;
+    @Column
+    public String location;
 
 }

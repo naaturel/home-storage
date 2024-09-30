@@ -1,27 +1,45 @@
 <script>
-    import { onDestroy } from 'svelte';
-    //import TopNavBar from './TopNavBar.svelte';
-    //import { User } from './store.js';
 
-    let user;
-    //const unUser = User.subscribe(v => user = v);
-    //onDestroy(unUser);
+import Button from "$lib/components/Button.svelte";
+import {authenticate} from "$lib/stores/requests.js";
 
-    $: isLoggedIn = !!user;
+let name = "";
+let password = "";
+
+async function signIn(event) {
+    event.preventDefault();
+    await authenticate(name, password);
+}
+
 </script>
 
-{#if isLoggedIn}
+    <h1>Log in to start</h1>
 
-    <p>
-        if you click "log out", you should see only "log in" button.
-    </p>
-    <p>
-        To see the bug, navigate to "TopNavBar.svelte" tab and uncomment <br>
-        //const unUser = User.subscribe(v => user = v);
-    </p>
-{:else}
-    <button on:click>log in</button>
-    <p>
-        click "login"
-    </p>
-{/if}
+    <form method="POST" on:submit={signIn}>
+
+        <input class="bordered" placeholder="Username" bind:value={name}>
+        <input class="bordered" placeholder="Password" bind:value={password}>
+
+        <Button
+                --box-shadow="none"
+                --margin-top="5vh"
+                --border="solid 1px black"
+                --width="18vw">
+            Log me in !
+        </Button>
+
+        <a href="/register">Not registered yet ? Let's get started</a>
+    </form>
+
+<style>
+
+    a
+    {
+
+        margin-bottom: 3vh;
+        margin-top: 3vh;
+        font-size: 1.25vh;
+        border-bottom: solid 1px #F5F5F5;
+    }
+
+</style>
