@@ -1,5 +1,6 @@
 package be.naaturel.homestorage.configurations;
 
+import be.naaturel.homestorage.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,10 +19,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 public class Security {
+
+    private final Configurations conf;
+
+    @Autowired
+    public Security(Configurations conf) {
+        this.conf = conf;
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -43,16 +52,15 @@ public class Security {
 
     @Bean
     public CorsFilter corsFilter() {
+
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        config.setAllowedOrigins(Arrays.asList(conf.authorizedHosts));
+        config.setAllowedMethods(Arrays.asList(conf.authorizedMethods));
+        config.setAllowedHeaders(Arrays.asList(conf.authorizedHeaders));
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
-
-
 }
