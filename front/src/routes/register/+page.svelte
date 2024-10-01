@@ -1,24 +1,35 @@
 <script>
 
-    /** @type {import('./$types').Actions} */
-
     import Button from "$lib/components/Button.svelte";
+    import {register} from "$lib/stores/requests.ts";
 
-    export const actions = {
-        register: async (event) => {
-            console.log(event)
+    let name = "";
+    let password = "";
+    let passwordConfirmation = "";
+    $: error = "";
+
+    async function signUp(event) {
+        event.preventDefault();
+
+        if (password !== passwordConfirmation) {
+            error = "Both password and password confirmation must be the same"
+            return;
         }
-    };
+        let res = await register(name, password);
+    }
+
 
 </script>
 
 <h1>Create an account</h1>
 
-<form method="POST" action="?/register">
+<div class="error">{error}</div>
 
-    <input class="bordered" name="name" placeholder="Username">
-    <input class="bordered" type="password" placeholder="Password">
-    <input class="bordered" name="password" type="password" placeholder="Confirm password">
+<form method="POST" on:submit={signUp}>
+
+    <input class="bordered" name="name" placeholder="Username" bind:value={name}>
+    <input class="bordered" type="password" placeholder="Password" bind:value={password}>
+    <input class="bordered" name="password" type="password" placeholder="Confirm password" bind:value={passwordConfirmation}>
 
     <Button --box-shadow="none"
             --margin-top="5vh"

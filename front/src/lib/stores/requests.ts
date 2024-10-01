@@ -1,17 +1,21 @@
 import {userStore} from "./UserStore";
 import {User} from "../models/User";
 
-export async function registerUser(name: string, password : string){
-    return await handleRequest(JSON.stringify({name:name, password:password}));
+export async function register(name: string, password : string){
+    return await handleRequest(
+        "http://localhost:8000/api/user/register",
+        JSON.stringify({name:name, password:password}));
 }
 
 
 export async function authenticate(name: string, password : string){
-    return await handleRequest(JSON.stringify({name:name, password:password}));
+    return await handleRequest(
+        "http://localhost:8000/api/user/authenticate",
+        JSON.stringify({name:name, password:password}));
 }
 
-async function handleRequest(data : string){
-    return await fetch("http://localhost:8000/api/user/authenticate", {
+async function handleRequest(url:string, data : string){
+    return await fetch(url, {
         method:"POST",
         body : data,
         headers: new Headers({'content-type': 'application/json'})
