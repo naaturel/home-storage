@@ -24,6 +24,10 @@ public class UserEntity implements UserDetails {
         return null;
     }
 
+    public String getId() {
+        return this.password;
+    }
+
     @Override
     public String getPassword() {
         return this.password;

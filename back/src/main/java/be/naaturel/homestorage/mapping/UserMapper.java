@@ -14,4 +14,9 @@ public class UserMapper {
         return ue;
     }
 
+    public static User toUser(UserEntity ue) {
+        return new User(ue.getId(), ue.getUsername(), ue.getPassword());
+    }
+
+
 }

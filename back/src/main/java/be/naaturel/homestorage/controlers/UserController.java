@@ -1,10 +1,11 @@
 package be.naaturel.homestorage.controlers;
 
+import be.naaturel.homestorage.exceptions.AuthenticationException;
 import be.naaturel.homestorage.models.User;
-import be.naaturel.homestorage.services.UserDetailsServiceImpl;
+import be.naaturel.homestorage.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    private final UserDetailsServiceImpl userService;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserDetailsServiceImpl userService){
+    public UserController(UserService userService){
         this.userService = userService;
     }
 
@@ -26,13 +27,18 @@ public class UserController {
     }
 
     @PostMapping("/api/user/authenticate")
-    public ResponseEntity<User> authenticate(@RequestBody User u){
-        System.out.println("Blurp");
-        if(userService.authenticate(u)){
-            return ResponseEntity.ok(u);
+    public ResponseEntity<?> authenticate(@RequestBody User u){
+
+        User result;
+
+        try{
+            result = userService.authenticate(u);
+        } catch (AuthenticationException ae){
+            return new ResponseEntity<>("Wrong username or password", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(result);
+
     }
 
 }

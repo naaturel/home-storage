@@ -1,14 +1,14 @@
 <script>
 
 import Button from "$lib/components/Button.svelte";
-import {authenticate} from "$lib/stores/requests.js";
+import {authenticate} from "$lib/stores/requests.ts";
 
 let name = "";
 let password = "";
 
 async function signIn(event) {
     event.preventDefault();
-    await authenticate(name, password);
+    let res = await authenticate(name, password);
 }
 
 </script>
