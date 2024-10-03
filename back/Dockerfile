@@ -1,11 +1,3 @@
-#FROM gradle:8.10.2-jdk21
-#FROM eclipse-temurin:21-jdk
-
-#COPY . .
-
-#ADD build/libs/home-storage-0.0.1-SNAPSHOT.jar shome-storage-0.0.1-SNAPSHOT.jar
-#ENTRYPOINT ["java","-jar","home-storage-0.0.1-SNAPSHOT.jar"]
-
 # temp container to build using gradle
 FROM gradle:8.10.2-jdk21 AS TEMP_BUILD_IMAGE
 ENV APP_HOME=/usr/app/
