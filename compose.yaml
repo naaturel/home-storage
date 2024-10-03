@@ -4,16 +4,26 @@ volumes:
 services:
 
   mariadb_test:
-    image: mariadb:latest
-    container_name: mariadb_test
+    build:
+      context : ./database
+      dockerfile : Dockerfile
     environment:
       - MARIADB_ROOT_PASSWORD=root
+      - DB_NAME=hs_db_test
+      - DB_USER=hs_user
+      - DB_PASSWORD=hs_test!
     volumes:
       - hs_database:/var/lib/mysql
     networks:
       - storage_network
     ports:
       - "9000:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 15s
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   api:
     container_name: api
@@ -29,7 +39,8 @@ services:
     networks:
       - storage_network
     depends_on:
-      - mariadb_test
+      mariadb_test:
+        condition: service_healthy
 
 networks:
   storage_network:
