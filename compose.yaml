@@ -1,0 +1,28 @@
+volumes:
+  hs_database:
+
+services:
+  mariadb_test:
+    image: mariadb:latest
+    container_name: mariadb_test
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+    volumes:
+      - hs_database:/var/lib/mysql
+    ports:
+      - "9000:3306"
+
+  api:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mariadb_test
+
+#  front:
+#    build: ./front/.dockerfile
+#    ports:
+#      - "7000:5173"
+# sudo docker run --detach --name mariadb_test -v hs_database:/var/lib/mysql --env MARIADB_ROOT_PASSWORD=root -p 9000:3306 mariadb:latest
