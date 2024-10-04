@@ -6,7 +6,7 @@
 
 
     $: greetings = () => {
-        if($userStore.id === undefined){
+        if($userStore === undefined){
             return "Not connected"
         } else {
             return `Hello, ${$userStore.name}`
